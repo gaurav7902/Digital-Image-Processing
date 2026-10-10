@@ -76,9 +76,15 @@ pip install -r "Lab Practicals/requirements.txt"
 Each lab directory contains:
 
 - A Jupyter notebook (`.ipynb`) with the lab exercises
-- Python solution files (`lab*_solution.py`) with implementations
+- Question-wise solutions in two styles for each problem:
+    - A library-based solution using built-in image-processing functions
+    - A scratch solution implemented without relying on helper library functions
 - Sample images for practice
 - Assignment PDFs for additional practice
+
+This repository follows a dual-solution approach. For every question, you can
+compare a library-based implementation with a scratch implementation to
+understand both the efficient approach and the underlying logic.
 
 To run the Jupyter notebooks:
 
@@ -86,10 +92,10 @@ To run the Jupyter notebooks:
 jupyter notebook "Lab Practicals/Lab1/1.ipynb"
 ```
 
-To run the Python solutions:
+To open a lab notebook:
 
 ```bash
-python "Lab Practicals/Lab3/lab3_solution.py"
+jupyter notebook "Lab Practicals/Lab3/Assignment_1_two_styles.ipynb"
 ```
 
 ## License
