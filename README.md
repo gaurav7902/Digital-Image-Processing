@@ -31,12 +31,14 @@ A collection of lab practicals, assignments, and notes for the Digital Image Pro
     ├── 6_Image Morphology.pdf
     ├── 7_Image Segmentation-I.pdf
     ├── 8_Image Segmentation-II.pdf
-    └── 9_Image Compression.pdf
+    ├── 9_Image Compression.pdf
+    ├── 10_Image Representation and Description.pdf
+    └── 11_Multiresolution Analysis.pdf
 ```
 
 ## Notes
 
-The [`Notes/`](/home/gaurav/Desktop/Class/Clg/Digital%20Image%20Processing/Public-Repo/Notes) directory contains the theory material for the complete course sequence:
+The [`Notes/`](Notes) directory contains the theory material for the complete course sequence:
 
 | Note | Topic                                |
 | ---- | ------------------------------------ |
@@ -49,6 +51,8 @@ The [`Notes/`](/home/gaurav/Desktop/Class/Clg/Digital%20Image%20Processing/Publi
 | 7    | Image Segmentation I                 |
 | 8    | Image Segmentation II                |
 | 9    | Image Compression                    |
+| 10   | Image Representation and Description |
+| 11   | Multiresolution Analysis             |
 
 These notes complement the practical notebooks and provide the mathematical
 background for both the built-in and DSA/manual solutions.
