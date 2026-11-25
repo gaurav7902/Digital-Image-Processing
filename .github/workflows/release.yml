@@ -1,4 +1,4 @@
-name: Publish release archive
+name: Package course release
 
 on:
     push:
@@ -9,19 +9,23 @@ permissions:
     contents: write
 
 jobs:
-    publish:
+    release:
         runs-on: ubuntu-latest
         steps:
             - name: Check out tagged source
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
 
-            - name: Build release archive outside the checkout
+            - name: Package course files outside the checkout
               run: |
                   archive="$RUNNER_TEMP/Digital-Image-Processing.zip"
-                  zip -r -9 "$archive" README.md index.html robots.txt Notes "Lab Practicals"
+                  zip -r -X -9 "$archive" README.md index.html robots.txt Notes "Lab Practicals"
+                  zip -T "$archive"
+                  unzip -Z1 "$archive" | grep -Fxq "index.html"
+                  unzip -Z1 "$archive" | grep -Fxq "Notes/"
+                  unzip -Z1 "$archive" | grep -Fxq "Lab Practicals/"
                   echo "ARCHIVE_PATH=$archive" >> "$GITHUB_ENV"
 
-            - name: Create GitHub Release and upload archive
+            - name: Create GitHub release and upload archive
               env:
                   GH_TOKEN: ${{ github.token }}
               run: |
