@@ -1,0 +1,2200 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#f3f6f2" />
+        <meta
+            name="description"
+            content="A searchable NCSH302 Digital Image Processing course library with twelve lab practicals, assignment notebooks, and theory notes." />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Digital Image Processing | NCSH302" />
+        <meta
+            property="og:description"
+            content="Lab practicals, assignment notebooks, and theory notes for Digital Image Processing." />
+        <title>Digital Image Processing | NCSH302 Course Library</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet" />
+        <style>
+            :root {
+                color-scheme: light;
+                --paper: #f0f3f1;
+                --surface: #ffffff;
+                --ink: #172226;
+                --muted: #536267;
+                --green: #08766f;
+                --green-dark: #102d35;
+                --lime: #e2ef65;
+                --coral: #ef674b;
+                --line: #cdd8d5;
+                --night: #12282d;
+                --mono: "IBM Plex Mono", monospace;
+                --sans: "IBM Plex Sans", sans-serif;
+                --display: "Barlow Semi Condensed", sans-serif;
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: 5rem;
+            }
+
+            body {
+                min-width: 320px;
+                margin: 0;
+                background: var(--paper);
+                color: var(--ink);
+                font-family: var(--sans);
+                font-size: 1rem;
+                line-height: 1.55;
+            }
+
+            a {
+                color: inherit;
+            }
+
+            a:focus-visible,
+            input:focus-visible,
+            select:focus-visible {
+                outline: 3px solid var(--coral);
+                outline-offset: 3px;
+            }
+
+            .skip-link {
+                position: absolute;
+                z-index: 5;
+                inset-block-start: 0.75rem;
+                inset-inline-start: 0.75rem;
+                padding: 0.7rem 1rem;
+                transform: translateY(-160%);
+                background: var(--green-dark);
+                color: white;
+            }
+
+            .skip-link:focus {
+                transform: translateY(0);
+            }
+
+            .site-header {
+                position: sticky;
+                z-index: 3;
+                inset-block-start: 0;
+                border-block-end: 1px solid var(--line);
+                background: rgb(243 246 242 / 94%);
+                backdrop-filter: blur(14px);
+            }
+
+            .header-inner,
+            main,
+            .site-footer {
+                width: min(1180px, calc(100% - 3rem));
+                margin-inline: auto;
+            }
+
+            .header-inner {
+                display: flex;
+                min-height: 4.5rem;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1.5rem;
+            }
+
+            .brand {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.7rem;
+                color: var(--green-dark);
+                font-weight: 700;
+                line-height: 1.1;
+                text-decoration: none;
+            }
+
+            .brand-mark {
+                display: grid;
+                width: 2rem;
+                height: 2rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3px;
+                padding: 3px;
+                background: var(--green);
+                transform: rotate(-6deg);
+            }
+
+            .brand-mark span {
+                background: var(--lime);
+            }
+
+            .brand-mark span:last-child {
+                background: var(--coral);
+            }
+
+            .brand-name small {
+                display: block;
+                margin-block-start: 0.2rem;
+                color: var(--muted);
+                font-family: var(--mono);
+                font-size: 0.65rem;
+                font-weight: 400;
+            }
+
+            .primary-nav {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 0.35rem;
+            }
+
+            .primary-nav a {
+                min-height: 2.75rem;
+                padding: 0.65rem 0.85rem;
+                border-radius: 2px;
+                color: var(--muted);
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-decoration: none;
+            }
+
+            .primary-nav a:hover {
+                background: #e5ece5;
+                color: var(--green-dark);
+            }
+
+            .primary-nav .repo-link {
+                background: var(--green);
+                color: white;
+            }
+
+            .primary-nav .repo-link:hover {
+                background: var(--green-dark);
+                color: white;
+            }
+
+            .intro {
+                display: grid;
+                min-height: 34rem;
+                grid-template-columns: 0.9fr 1.1fr;
+                align-items: center;
+                gap: 3rem;
+                padding-block: 4rem 4.5rem;
+            }
+
+            .course-label,
+            .section-kicker,
+            .sample-label,
+            .resource-meta,
+            .lab-code {
+                font-family: var(--mono);
+            }
+
+            .course-label {
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                margin: 0 0 1rem;
+                color: var(--green);
+                font-size: 0.76rem;
+            }
+
+            .signal-dot {
+                width: 0.6rem;
+                height: 0.6rem;
+                border-radius: 50%;
+                background: var(--coral);
+                box-shadow: 0 0 0 4px rgb(229 110 84 / 16%);
+            }
+
+            h1,
+            h2,
+            h3,
+            p {
+                margin-block-start: 0;
+            }
+
+            h1,
+            h2,
+            h3 {
+                color: var(--green-dark);
+                font-family: var(--display);
+                font-weight: 600;
+                line-height: 0.98;
+            }
+
+            h1 {
+                max-width: 8ch;
+                margin-block-end: 1.2rem;
+                font-size: 5.25rem;
+                letter-spacing: 0;
+            }
+
+            .intro-summary {
+                max-width: 37rem;
+                margin-block-end: 1.75rem;
+                color: var(--muted);
+                font-size: 1.08rem;
+            }
+
+            .quick-counts {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.5rem 2rem;
+                margin: 0;
+            }
+
+            .quick-counts div {
+                display: grid;
+                gap: 0.15rem;
+            }
+
+            .quick-counts strong {
+                color: var(--green-dark);
+                font-family: var(--display);
+                font-size: 2rem;
+                font-weight: 600;
+                line-height: 1;
+            }
+
+            .quick-counts span {
+                color: var(--muted);
+                font-size: 0.8rem;
+            }
+
+            .feature-figure {
+                position: relative;
+                margin: 0;
+                padding: 1.1rem;
+                border: 1px solid #c9d6cb;
+                background-color: #e7ede6;
+                background-image:
+                    linear-gradient(rgb(22 75 60 / 5%) 1px, transparent 1px),
+                    linear-gradient(
+                        90deg,
+                        rgb(22 75 60 / 5%) 1px,
+                        transparent 1px
+                    );
+                background-size: 20px 20px;
+                box-shadow: 12px 12px 0 rgb(22 75 60 / 8%);
+            }
+
+            .sample-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 0.6rem;
+            }
+
+            .sample-grid figure {
+                min-width: 0;
+                margin: 0;
+                padding: 0.45rem;
+                background: var(--surface);
+            }
+
+            .sample-grid img {
+                display: block;
+                width: 100%;
+                aspect-ratio: 1;
+                object-fit: cover;
+                background: #cbd1cb;
+            }
+
+            .sample-label {
+                display: block;
+                overflow-wrap: anywhere;
+                padding-block-start: 0.45rem;
+                color: var(--muted);
+                font-size: 0.64rem;
+                line-height: 1.35;
+            }
+
+            .feature-caption {
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+                padding-block-start: 0.85rem;
+                color: var(--green-dark);
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+
+            .feature-caption span:last-child {
+                color: var(--muted);
+                font-family: var(--mono);
+                font-size: 0.68rem;
+                font-weight: 400;
+                text-align: end;
+            }
+
+            .library-section {
+                padding-block: 3.4rem;
+                border-block-start: 1px solid var(--line);
+            }
+
+            .section-heading {
+                display: flex;
+                align-items: end;
+                justify-content: space-between;
+                gap: 2rem;
+                margin-block-end: 1.5rem;
+            }
+
+            .section-kicker {
+                margin-block-end: 0.45rem;
+                color: var(--green);
+                font-size: 0.7rem;
+            }
+
+            h2 {
+                margin-block-end: 0;
+                font-size: 2.8rem;
+            }
+
+            .section-note {
+                max-width: 28rem;
+                margin: 0;
+                color: var(--muted);
+                font-size: 0.92rem;
+            }
+
+            .library-tools {
+                display: grid;
+                grid-template-columns:
+                    minmax(13rem, 1fr) minmax(12rem, 15rem)
+                    auto;
+                align-items: end;
+                gap: 1rem;
+                margin-block: 1.8rem 2.1rem;
+                padding: 1rem;
+                border: 1px solid var(--line);
+                background: #eaf0e9;
+            }
+
+            .field {
+                display: grid;
+                gap: 0.35rem;
+            }
+
+            .field label {
+                color: var(--green-dark);
+                font-size: 0.75rem;
+                font-weight: 600;
+            }
+
+            .field input,
+            .field select {
+                width: 100%;
+                min-height: 2.85rem;
+                padding: 0.65rem 0.8rem;
+                border: 1px solid #aebdb0;
+                border-radius: 2px;
+                background: var(--surface);
+                color: var(--ink);
+                font: inherit;
+            }
+
+            .result-count {
+                min-width: 9rem;
+                margin: 0 0 0.75rem;
+                color: var(--muted);
+                font-family: var(--mono);
+                font-size: 0.7rem;
+                text-align: end;
+            }
+
+            .no-results {
+                padding: 1rem;
+                border-inline-start: 3px solid var(--coral);
+                background: white;
+                color: var(--muted);
+            }
+
+            .lab-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 1px;
+                border: 1px solid var(--line);
+                background: var(--line);
+            }
+
+            .lab-item {
+                display: flex;
+                min-height: 14rem;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.35rem;
+                background: var(--surface);
+            }
+
+            .lab-code {
+                display: inline-flex;
+                min-height: 1.8rem;
+                align-items: center;
+                margin-block-end: 0.8rem;
+                padding-inline: 0.55rem;
+                background: #e9f1d0;
+                color: var(--green-dark);
+                font-size: 0.66rem;
+            }
+
+            .lab-item h3 {
+                margin-block-end: 0.55rem;
+                font-size: 1.55rem;
+                line-height: 1.05;
+            }
+
+            .lab-item p {
+                margin-block-end: 1rem;
+                color: var(--muted);
+                font-size: 0.88rem;
+            }
+
+            .resource-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.45rem 1rem;
+                margin-block-start: auto;
+            }
+
+            .resource-links a,
+            .note-link,
+            .reference-link {
+                color: var(--green);
+                font-size: 0.82rem;
+                font-weight: 600;
+                text-decoration-thickness: 1px;
+                text-underline-offset: 3px;
+            }
+
+            .resource-links a:hover,
+            .note-link:hover,
+            .reference-link:hover {
+                color: #a23d2b;
+            }
+
+            .notes-grid,
+            .reference-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1px;
+                border: 1px solid var(--line);
+                background: var(--line);
+            }
+
+            .notes-grid li,
+            .reference-grid li {
+                min-width: 0;
+                list-style: none;
+                background: var(--surface);
+            }
+
+            .notes-grid,
+            .reference-grid {
+                margin: 0;
+                padding: 0;
+            }
+
+            .note-link,
+            .reference-link {
+                display: flex;
+                min-height: 4rem;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                padding: 0.85rem 1rem;
+                text-decoration: none;
+            }
+
+            .note-link:hover,
+            .reference-link:hover {
+                background: #f7faef;
+            }
+
+            .resource-meta {
+                flex: 0 0 auto;
+                color: var(--muted);
+                font-size: 0.65rem;
+                font-weight: 400;
+            }
+
+            .exam-block {
+                margin-block-start: 1.5rem;
+                padding: 1.25rem;
+                border-inline-start: 3px solid var(--coral);
+                background: #eaf0e9;
+            }
+
+            .exam-block h3 {
+                margin-block-end: 0.35rem;
+                font-size: 1.45rem;
+            }
+
+            .exam-block p {
+                margin-block-end: 0.8rem;
+                color: var(--muted);
+                font-size: 0.88rem;
+            }
+
+            .site-footer {
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+                padding-block: 1.4rem 2rem;
+                border-block-start: 1px solid var(--line);
+                color: var(--muted);
+                font-size: 0.78rem;
+            }
+
+            .site-footer p {
+                margin: 0;
+            }
+
+            .site-footer a {
+                color: var(--green);
+                font-weight: 600;
+                text-underline-offset: 3px;
+            }
+
+            [hidden] {
+                display: none !important;
+            }
+
+            @media (max-width: 850px) {
+                .intro {
+                    min-height: 0;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 2rem;
+                }
+
+                h1 {
+                    font-size: 4.4rem;
+                }
+
+                .lab-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .library-tools {
+                    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+                }
+
+                .result-count {
+                    grid-column: 1 / -1;
+                    margin: 0;
+                    text-align: start;
+                }
+            }
+
+            @media (max-width: 620px) {
+                .header-inner,
+                main,
+                .site-footer {
+                    width: min(100% - 2rem, 36rem);
+                }
+
+                .header-inner {
+                    min-height: 4rem;
+                    flex-wrap: wrap;
+                    gap: 0.2rem 0.75rem;
+                    padding-block: 0.55rem;
+                }
+
+                .primary-nav {
+                    width: 100%;
+                    justify-content: flex-start;
+                    gap: 0.1rem;
+                }
+
+                .primary-nav a {
+                    min-height: 2.5rem;
+                    padding: 0.55rem 0.7rem;
+                    font-size: 0.82rem;
+                }
+
+                .intro {
+                    grid-template-columns: 1fr;
+                    gap: 1.7rem;
+                    padding-block: 2.8rem 3rem;
+                }
+
+                h1 {
+                    max-width: 10ch;
+                    font-size: 3.8rem;
+                }
+
+                .intro-summary {
+                    font-size: 1rem;
+                }
+
+                .quick-counts {
+                    gap: 1rem 1.5rem;
+                }
+
+                .section-heading {
+                    align-items: flex-start;
+                    flex-direction: column;
+                    gap: 0.75rem;
+                }
+
+                h2 {
+                    font-size: 2.35rem;
+                }
+
+                .library-section {
+                    padding-block: 2.7rem;
+                }
+
+                .library-tools,
+                .lab-grid,
+                .notes-grid,
+                .reference-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .result-count {
+                    grid-column: auto;
+                }
+
+                .lab-item {
+                    min-height: 0;
+                }
+
+                .sample-grid {
+                    gap: 0.35rem;
+                }
+
+                .sample-grid figure {
+                    padding: 0.3rem;
+                }
+
+                .sample-label {
+                    font-size: 0.59rem;
+                }
+
+                .feature-caption {
+                    flex-direction: column;
+                    gap: 0.25rem;
+                }
+
+                .feature-caption span:last-child {
+                    text-align: start;
+                }
+
+                .site-footer {
+                    flex-wrap: wrap;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    scroll-behavior: auto !important;
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+
+            .hero {
+                position: relative;
+                display: grid;
+                grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+                align-items: center;
+                gap: 3rem;
+                margin-block: 1.5rem 1.25rem;
+                padding: 3rem;
+                overflow: hidden;
+                border-inline-start: 8px solid var(--coral);
+                background: var(--night);
+                color: #f7faf7;
+            }
+
+            .hero::after {
+                position: absolute;
+                inset: 0;
+                background-image:
+                    linear-gradient(rgb(255 255 255 / 4%) 1px, transparent 1px),
+                    linear-gradient(
+                        90deg,
+                        rgb(255 255 255 / 4%) 1px,
+                        transparent 1px
+                    );
+                background-size: 32px 32px;
+                content: "";
+                pointer-events: none;
+            }
+
+            .hero-copy,
+            .image-bench {
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero .course-label {
+                margin-block-end: 1.2rem;
+                color: var(--lime);
+                font-size: 0.69rem;
+            }
+
+            .hero .signal-dot {
+                background: var(--lime);
+                box-shadow: 0 0 0 4px rgb(226 239 101 / 17%);
+            }
+
+            .hero h1 {
+                max-width: 7ch;
+                margin-block-end: 1rem;
+                color: #f7faf7;
+                font-size: 4.7rem;
+                line-height: 0.91;
+            }
+
+            .hero h1 span {
+                color: var(--lime);
+            }
+
+            .hero-summary {
+                max-width: 29rem;
+                margin-block-end: 1.5rem;
+                color: #d3ddda;
+                font-size: 1rem;
+            }
+
+            .hero-jump {
+                display: inline-flex;
+                min-height: 2.8rem;
+                align-items: center;
+                gap: 0.8rem;
+                padding: 0.6rem 0.85rem;
+                background: var(--lime);
+                color: var(--night);
+                font-size: 0.86rem;
+                font-weight: 700;
+                text-decoration: none;
+            }
+
+            .hero-jump span {
+                font-size: 1.2rem;
+                line-height: 1;
+            }
+
+            .hero-counts {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.65rem 1.2rem;
+                margin-block-start: 2rem;
+                padding-block-start: 1rem;
+                border-block-start: 1px solid rgb(255 255 255 / 23%);
+                color: #cfdbd7;
+                font-family: var(--mono);
+                font-size: 0.66rem;
+                text-transform: uppercase;
+            }
+
+            .hero-counts span {
+                display: inline-flex;
+                align-items: baseline;
+                gap: 0.4rem;
+            }
+
+            .hero-counts strong {
+                color: white;
+                font-family: var(--display);
+                font-size: 1.35rem;
+                font-weight: 600;
+            }
+
+            .image-bench {
+                min-width: 0;
+                margin: 0;
+                padding: 0.7rem;
+                background: #f7faf7;
+                color: var(--ink);
+                box-shadow: 10px 10px 0 rgb(0 0 0 / 20%);
+            }
+
+            .bench-head,
+            .bench-caption {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.75rem;
+            }
+
+            .bench-head {
+                min-height: 2rem;
+                padding-inline: 0.35rem;
+                color: var(--muted);
+                font-family: var(--mono);
+                font-size: 0.62rem;
+            }
+
+            .bench-image {
+                position: relative;
+                overflow: hidden;
+                background: #10191c;
+                aspect-ratio: 1.25;
+            }
+
+            .bench-image img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            .bench-stamp {
+                position: absolute;
+                inset-inline-start: 0.75rem;
+                inset-block-end: 0.75rem;
+                padding: 0.4rem 0.55rem;
+                background: var(--lime);
+                color: var(--night);
+                font-family: var(--mono);
+                font-size: 0.63rem;
+            }
+
+            .bench-controls {
+                display: grid;
+                gap: 0.65rem;
+                padding: 0.75rem 0.3rem 0.2rem;
+            }
+
+            .bench-caption {
+                color: var(--green-dark);
+                font-size: 0.78rem;
+            }
+
+            .bench-caption span {
+                color: var(--muted);
+                font-family: var(--mono);
+                font-size: 0.62rem;
+                text-align: end;
+            }
+
+            .sample-switch {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.35rem;
+            }
+
+            .sample-switch button {
+                min-height: 2.5rem;
+                padding: 0.45rem 0.8rem;
+                border: 1px solid var(--line);
+                border-radius: 0;
+                background: transparent;
+                color: var(--green-dark);
+                cursor: pointer;
+                font: 600 0.76rem var(--sans);
+            }
+
+            .sample-switch button[aria-pressed="true"] {
+                border-color: var(--green-dark);
+                background: var(--green-dark);
+                color: white;
+            }
+
+            .process-index {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                margin-block-end: 2rem;
+                border-block: 1px solid var(--line);
+            }
+
+            .process-index a {
+                display: grid;
+                min-height: 6rem;
+                grid-template-columns: 2rem 1fr;
+                align-content: center;
+                align-items: baseline;
+                column-gap: 0.5rem;
+                padding: 0.8rem 1rem;
+                border-block-start: 4px solid var(--green);
+                color: var(--green-dark);
+                text-decoration: none;
+            }
+
+            .process-index a + a {
+                border-inline-start: 1px solid var(--line);
+            }
+
+            .process-index a:nth-child(2) {
+                border-block-start-color: #da9a39;
+            }
+
+            .process-index a:nth-child(3) {
+                border-block-start-color: var(--coral);
+            }
+
+            .process-index a:nth-child(4) {
+                border-block-start-color: #426bb1;
+            }
+
+            .process-index a > span {
+                grid-row: span 2;
+                color: var(--coral);
+                font-family: var(--mono);
+                font-size: 0.7rem;
+            }
+
+            .process-index strong {
+                font-size: 0.86rem;
+            }
+
+            .process-index small {
+                color: var(--muted);
+                font-family: var(--mono);
+                font-size: 0.64rem;
+            }
+
+            .library-tools {
+                border: 0;
+                border-block: 1px solid var(--line);
+                background: transparent;
+            }
+
+            .course-path {
+                border-block-end: 1px solid var(--line);
+            }
+
+            .pipeline-stage {
+                display: grid;
+                grid-template-columns: minmax(11rem, 0.7fr) minmax(0, 2fr);
+                gap: 1.75rem;
+                padding-block: 1.6rem;
+                border-block-start: 1px solid var(--line);
+            }
+
+            .stage-heading {
+                display: grid;
+                grid-template-columns: 2.2rem 1fr;
+                align-content: start;
+                gap: 0.6rem;
+                padding-block-start: 0.9rem;
+            }
+
+            .stage-heading > span {
+                color: var(--coral);
+                font-family: var(--mono);
+                font-size: 0.72rem;
+            }
+
+            .stage-heading p {
+                margin-block-end: 0.35rem;
+                color: var(--green-dark);
+                font-family: var(--display);
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 1;
+            }
+
+            .stage-heading small {
+                color: var(--muted);
+                font-size: 0.76rem;
+            }
+
+            .stage-list {
+                min-width: 0;
+            }
+
+            .stage-list .lab-item {
+                display: grid;
+                min-height: 0;
+                grid-template-columns:
+                    3.2rem minmax(10rem, 0.9fr) minmax(12rem, 1.25fr)
+                    minmax(12rem, 1.3fr);
+                align-items: center;
+                gap: 0.8rem;
+                padding: 1rem 0;
+                border-block-start: 1px solid var(--line);
+                background: transparent;
+                transition: border-color 160ms ease;
+            }
+
+            .stage-list .lab-item:first-child {
+                border-block-start: 0;
+            }
+
+            .stage-list .lab-item:hover {
+                border-block-start-color: var(--green);
+            }
+
+            .stage-list .lab-code {
+                min-height: 0;
+                margin: 0;
+                padding: 0.15rem 0 0.15rem 0.55rem;
+                border-inline-start: 2px solid var(--lime);
+                background: transparent;
+                color: var(--green);
+                font-size: 0.68rem;
+            }
+
+            .stage-list .lab-item h3 {
+                margin: 0;
+                font-family: var(--sans);
+                font-size: 0.98rem;
+                font-weight: 600;
+                line-height: 1.3;
+            }
+
+            .stage-list .lab-item p {
+                margin: 0;
+                font-size: 0.78rem;
+                line-height: 1.45;
+            }
+
+            .stage-list .resource-links {
+                justify-content: flex-start;
+                gap: 0.3rem 0.8rem;
+                margin: 0;
+            }
+
+            .stage-list .resource-links a {
+                font-size: 0.72rem;
+            }
+
+            .notes-grid,
+            .reference-grid {
+                display: block;
+                border: 0;
+                border-block-start: 1px solid var(--line);
+                background: transparent;
+            }
+
+            .notes-grid li,
+            .reference-grid li {
+                border-block-end: 1px solid var(--line);
+                background: transparent;
+            }
+
+            .note-link,
+            .reference-link {
+                min-height: 3.6rem;
+                padding-inline: 0.25rem;
+            }
+
+            .note-link:hover,
+            .reference-link:hover {
+                background: #e7eeea;
+            }
+
+            dialog#pdf-viewer {
+                width: min(94vw, 76rem);
+                height: min(90vh, 58rem);
+                max-width: none;
+                max-height: none;
+                padding: 0;
+                overflow: hidden;
+                border: 1px solid #718481;
+                background: var(--surface);
+                color: var(--ink);
+            }
+
+            dialog#pdf-viewer[open] {
+                display: grid;
+                grid-template-rows: auto minmax(0, 1fr);
+            }
+
+            dialog#pdf-viewer::backdrop {
+                background: rgb(9 24 27 / 78%);
+                overflow: hidden;
+                overscroll-behavior: contain;
+            }
+
+            dialog#pdf-viewer:modal {
+                overscroll-behavior: contain;
+            }
+
+            .viewer-head {
+                display: flex;
+                min-height: 4rem;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                padding: 0.7rem 1rem;
+                border-block-end: 1px solid var(--line);
+                background: var(--paper);
+            }
+
+            .viewer-head h2 {
+                overflow: hidden;
+                margin: 0;
+                color: var(--green-dark);
+                font-family: var(--sans);
+                font-size: 1rem;
+                line-height: 1.3;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .viewer-actions {
+                display: flex;
+                flex: 0 0 auto;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .viewer-actions a,
+            .viewer-actions button {
+                display: inline-flex;
+                min-height: 2.6rem;
+                align-items: center;
+                justify-content: center;
+                padding: 0.55rem 0.75rem;
+                border: 1px solid var(--line);
+                border-radius: 0;
+                background: white;
+                color: var(--green-dark);
+                cursor: pointer;
+                font: 600 0.78rem var(--sans);
+                text-decoration: none;
+            }
+
+            .viewer-actions button {
+                border-color: var(--green-dark);
+                background: var(--green-dark);
+                color: white;
+            }
+
+            #pdf-frame {
+                width: 100%;
+                height: 100%;
+                min-height: 0;
+                border: 0;
+                background: #dfe5e2;
+            }
+
+            @media (max-width: 900px) {
+                .hero {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1.5rem;
+                    padding: 2rem;
+                }
+
+                .hero h1 {
+                    font-size: 3.8rem;
+                }
+
+                .pipeline-stage {
+                    grid-template-columns: minmax(9rem, 0.6fr) minmax(0, 2fr);
+                    gap: 1rem;
+                }
+
+                .stage-list .lab-item {
+                    grid-template-columns: 3rem minmax(9rem, 1fr) minmax(
+                            11rem,
+                            1.2fr
+                        );
+                }
+
+                .stage-list .resource-links {
+                    grid-column: 2 / -1;
+                    padding-block-start: 0.15rem;
+                }
+            }
+
+            @media (max-width: 620px) {
+                .hero {
+                    grid-template-columns: 1fr;
+                    gap: 1.5rem;
+                    margin-block-start: 0.75rem;
+                    padding: 1.35rem;
+                    border-inline-start-width: 5px;
+                }
+
+                .hero h1 {
+                    max-width: 8ch;
+                    font-size: 3.5rem;
+                }
+
+                .hero-counts {
+                    gap: 0.55rem 0.8rem;
+                    margin-block-start: 1.25rem;
+                    font-size: 0.58rem;
+                }
+
+                .hero-counts span {
+                    gap: 0.25rem;
+                }
+
+                .hero-counts strong {
+                    font-size: 1.1rem;
+                }
+
+                .bench-image {
+                    aspect-ratio: 1;
+                }
+
+                .bench-caption {
+                    align-items: flex-start;
+                    flex-direction: column;
+                    gap: 0.15rem;
+                }
+
+                .bench-caption span {
+                    text-align: start;
+                }
+
+                .process-index {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .process-index a {
+                    min-height: 5rem;
+                    padding: 0.6rem;
+                }
+
+                .process-index a:nth-child(3) {
+                    border-inline-start: 0;
+                }
+
+                .pipeline-stage {
+                    grid-template-columns: 1fr;
+                    gap: 0.55rem;
+                    padding-block: 1.2rem;
+                }
+
+                .stage-heading {
+                    grid-template-columns: 1.8rem 1fr;
+                    padding-block: 0.15rem 0.35rem;
+                }
+
+                .stage-heading p {
+                    font-size: 1.3rem;
+                }
+
+                .stage-list .lab-item {
+                    grid-template-columns: 2.8rem minmax(0, 1fr);
+                    gap: 0.4rem 0.75rem;
+                    padding-block: 0.85rem;
+                }
+
+                .stage-list .lab-item h3 {
+                    grid-column: 2;
+                }
+
+                .stage-list .lab-item p,
+                .stage-list .resource-links {
+                    grid-column: 2;
+                }
+
+                .stage-list .resource-links {
+                    gap: 0.3rem 0.7rem;
+                }
+
+                dialog#pdf-viewer {
+                    width: 100vw;
+                    height: 100dvh;
+                    margin: 0;
+                    border-inline: 0;
+                }
+
+                .viewer-head {
+                    align-items: flex-start;
+                    flex-direction: column;
+                    gap: 0.45rem;
+                }
+
+                .viewer-actions {
+                    width: 100%;
+                    justify-content: flex-end;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to course resources</a>
+        <header class="site-header" id="top">
+            <div class="header-inner">
+                <a
+                    class="brand"
+                    href="#top"
+                    aria-label="Digital Image Processing course home">
+                    <span class="brand-mark" aria-hidden="true"
+                        ><span></span><span></span><span></span><span></span
+                    ></span>
+                    <span class="brand-name"
+                        >Digital Image Processing<small
+                            >NCSH302 · Course library</small
+                        ></span
+                    >
+                </a>
+                <nav class="primary-nav" aria-label="Course sections">
+                    <a href="#labs">Lab practicals</a>
+                    <a href="#notes">Theory notes</a>
+                    <a href="#references">Course files</a>
+                    <a
+                        class="repo-link"
+                        href="https://github.com/gaurav7902/Digital-Image-Processing/"
+                        >GitHub repository</a
+                    >
+                </nav>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="hero" aria-labelledby="page-title">
+                <div class="hero-copy">
+                    <p class="course-label">
+                        <span class="signal-dot" aria-hidden="true"></span
+                        >NCSH302 / DIGITAL IMAGE PROCESSING
+                    </p>
+                    <h1 id="page-title">
+                        Signals.<br />Pixels.<br /><span>Meaning.</span>
+                    </h1>
+                    <p class="hero-summary">
+                        Follow an image through the course: read its pixels,
+                        shape its signal, restore what is lost, and find the
+                        structures inside.
+                    </p>
+                    <a class="hero-jump" href="#labs"
+                        >Explore the lab sequence
+                        <span aria-hidden="true">↓</span></a
+                    >
+                    <div class="hero-counts" aria-label="Course contents">
+                        <span><strong>12</strong> practicals</span>
+                        <span><strong>11</strong> theory notes</span>
+                        <span><strong>10</strong> assignments</span>
+                    </div>
+                </div>
+                <figure class="image-bench">
+                    <div class="bench-head">
+                        <span>TEST FRAME / CAMERAMAN</span
+                        ><span>512 × 512 PX</span>
+                    </div>
+                    <div class="bench-image">
+                        <img
+                            id="sample-preview"
+                            src="Lab%20Practicals/Lab5/Cameraman.png"
+                            alt="Grayscale cameraman test image before noise is added"
+                            width="512"
+                            height="512"
+                            fetchpriority="high" />
+                        <span class="bench-stamp" id="sample-stamp"
+                            >REFERENCE / INPUT</span
+                        >
+                    </div>
+                    <figcaption class="bench-controls">
+                        <div class="bench-caption">
+                            <strong id="sample-title">Original image</strong
+                            ><span>Lab 5 · Noise and restoration</span>
+                        </div>
+                        <div
+                            class="sample-switch"
+                            role="group"
+                            aria-label="Choose an image condition">
+                            <button
+                                type="button"
+                                aria-pressed="true"
+                                data-image="Lab%20Practicals/Lab5/Cameraman.png"
+                                data-alt="Grayscale cameraman test image before noise is added"
+                                data-title="Original image"
+                                data-stamp="REFERENCE / INPUT">
+                                Original
+                            </button>
+                            <button
+                                type="button"
+                                aria-pressed="false"
+                                data-image="Lab%20Practicals/Lab5/Gaussian_Noisy_Image.png"
+                                data-alt="Cameraman image with Gaussian noise"
+                                data-title="Gaussian noise"
+                                data-stamp="DEGRADED / GAUSSIAN">
+                                Gaussian
+                            </button>
+                            <button
+                                type="button"
+                                aria-pressed="false"
+                                data-image="Lab%20Practicals/Lab5/Salt_Pepper_Noisy_Image.png"
+                                data-alt="Cameraman image with salt-and-pepper noise"
+                                data-title="Salt-and-pepper noise"
+                                data-stamp="DEGRADED / IMPULSE">
+                                Impulse
+                            </button>
+                        </div>
+                    </figcaption>
+                </figure>
+            </section>
+
+            <nav class="process-index" aria-label="Image processing stages">
+                <a href="#stage-foundations"
+                    ><span>01</span><strong>Read the image</strong
+                    ><small>Labs 01–03</small></a
+                >
+                <a href="#stage-enhancement"
+                    ><span>02</span><strong>Shape the signal</strong
+                    ><small>Labs 04–05</small></a
+                >
+                <a href="#stage-restoration"
+                    ><span>03</span><strong>Recover detail</strong
+                    ><small>Labs 06–08</small></a
+                >
+                <a href="#stage-segmentation"
+                    ><span>04</span><strong>Find structure</strong
+                    ><small>Labs 09–12</small></a
+                >
+            </nav>
+
+            <section
+                class="library-section"
+                id="labs"
+                aria-labelledby="labs-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">
+                            From raw pixels to useful regions
+                        </p>
+                        <h2 id="labs-title">Lab practicals</h2>
+                    </div>
+                    <p class="section-note">
+                        Move through the sequence or jump to a stage. Assignment
+                        notebooks pair built-in methods with DSA/manual
+                        implementations.
+                    </p>
+                </div>
+
+                <div class="library-tools">
+                    <div class="field">
+                        <label for="resource-search">Find a resource</label>
+                        <input
+                            id="resource-search"
+                            type="search"
+                            placeholder="Try morphology, FFT, Canny"
+                            autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <label for="resource-filter">Show</label>
+                        <select id="resource-filter">
+                            <option value="all">All resources</option>
+                            <option value="labs">Lab practicals</option>
+                            <option value="notes">Theory notes</option>
+                            <option value="reference">Course files</option>
+                        </select>
+                    </div>
+                    <p
+                        class="result-count"
+                        id="result-count"
+                        role="status"
+                        aria-live="polite"></p>
+                </div>
+
+                <p class="no-results" id="no-results" hidden>
+                    No resources match that search. Try another topic or choose
+                    “All resources”.
+                </p>
+
+                <div class="course-path" data-resource-group>
+                    <section
+                        class="pipeline-stage"
+                        id="stage-foundations"
+                        data-resource-group>
+                        <header class="stage-heading">
+                            <span>01</span>
+                            <div>
+                                <p>Read the image</p>
+                                <small
+                                    >Acquire, inspect, and describe
+                                    pixels</small
+                                >
+                            </div>
+                        </header>
+                        <div class="stage-list">
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="introduction python matlab image processing basics">
+                                <span class="lab-code">LAB 01</span>
+                                <h3>Getting started</h3>
+                                <p>
+                                    Image I/O, display, and the Python or MATLAB
+                                    foundations used throughout the course.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab1/1.ipynb"
+                                        >Reference notebook</a
+                                    >
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab1/Practice_Assignment_1.ipynb"
+                                        >Practice notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab1/Introduction_to_Matlab_Python.pdf"
+                                        >PDF guide</a
+                                    >
+                                </div>
+                            </article>
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="basic operations load manipulate visualize images">
+                                <span class="lab-code">LAB 02</span>
+                                <h3>Basic image operations</h3>
+                                <p>
+                                    Load, inspect, manipulate, and visualize
+                                    digital images.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab2/1.ipynb"
+                                        >Reference notebook</a
+                                    >
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab2/Practice_Assignment_2.ipynb"
+                                        >Practice notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab2/Practice%20Assignment%201.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="pixel geometry adjacency path finding 4 8 m adjacency">
+                                <span class="lab-code">LAB 03</span>
+                                <h3>Pixel geometry</h3>
+                                <p>
+                                    Neighbourhoods, adjacency, connectivity, and
+                                    paths through a pixel grid.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab3/1.ipynb"
+                                        >Reference notebook</a
+                                    >
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab3/Assignment_1.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab3/DIP_Assignment-1.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                    <section
+                        class="pipeline-stage"
+                        id="stage-enhancement"
+                        data-resource-group>
+                        <header class="stage-heading">
+                            <span>02</span>
+                            <div>
+                                <p>Shape the signal</p>
+                                <small
+                                    >Spatial and frequency-domain
+                                    enhancement</small
+                                >
+                            </div>
+                        </header>
+                        <div class="stage-list">
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="spatial domain enhancement point processing histogram filters">
+                                <span class="lab-code">LAB 04</span>
+                                <h3>Spatial enhancement</h3>
+                                <p>
+                                    Point processing, histogram operations, and
+                                    spatial filtering.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab4/1.ipynb"
+                                        >Reference notebook</a
+                                    >
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab4/Assignment_2.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab4/DIP_Assignment-2.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="image enhancement noise gaussian salt pepper restoration filters">
+                                <span class="lab-code">LAB 05</span>
+                                <h3>Enhancement &amp; noise</h3>
+                                <p>
+                                    Explore enhancement techniques and inspect
+                                    noisy images before and after filtering.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab5/1.ipynb"
+                                        >Reference notebook</a
+                                    >
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab5/Assignment_3.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab5/DIP_Assignment-3.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                    <section
+                        class="pipeline-stage"
+                        id="stage-restoration"
+                        data-resource-group>
+                        <header class="stage-heading">
+                            <span>03</span>
+                            <div>
+                                <p>Recover detail</p>
+                                <small
+                                    >Model degradation and reverse its
+                                    effects</small
+                                >
+                            </div>
+                        </header>
+                        <div class="stage-list">
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="image restoration gaussian salt pepper noise deblurring inverse wiener filtering">
+                                <span class="lab-code">LAB 06</span>
+                                <h3>Image restoration</h3>
+                                <p>
+                                    Reduce noise and recover degraded images
+                                    with restoration methods.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab6/Assignment_4.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab6/DIP_Assignment-4.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="frequency domain dft fft gaussian low pass butterworth high pass">
+                                <span class="lab-code">LAB 07</span>
+                                <h3>Frequency-domain enhancement</h3>
+                                <p>
+                                    Use the DFT and frequency filters to examine
+                                    image structure in the spectrum.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab7/Assignment_5.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab7/DIP_Assignment-5.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="deblurring inverse filter wiener restoration">
+                                <span class="lab-code">LAB 08</span>
+                                <h3>Image deblurring</h3>
+                                <p>
+                                    Compare inverse filtering and Wiener
+                                    filtering for blurred images.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab8/Assignment_6.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab8/DIP_Assignment-6.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                    <section
+                        class="pipeline-stage"
+                        id="stage-segmentation"
+                        data-resource-group>
+                        <header class="stage-heading">
+                            <span>04</span>
+                            <div>
+                                <p>Find structure</p>
+                                <small
+                                    >Separate objects, edges, and image
+                                    regions</small
+                                >
+                            </div>
+                        </header>
+                        <div class="stage-list">
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="morphology erosion dilation opening closing boundary extraction">
+                                <span class="lab-code">LAB 09</span>
+                                <h3>Image morphology</h3>
+                                <p>
+                                    Apply structuring elements for erosion,
+                                    dilation, opening, closing, and boundaries.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab9/Assignment_7.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab9/DIP_Assignment-7.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="segmentation thresholding histogram modes local threshold region growing">
+                                <span class="lab-code">LAB 10</span>
+                                <h3>Segmentation I</h3>
+                                <p>
+                                    Thresholding, histogram modes, local
+                                    methods, and region growing.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab10/Assignment_8.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab10/DIP_Assignment-8.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="advanced segmentation region splitting merging line detection gradient edges">
+                                <span class="lab-code">LAB 11</span>
+                                <h3>Segmentation II</h3>
+                                <p>
+                                    Split and merge regions, detect lines, and
+                                    find edges with image gradients.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab11/Assignment_9.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab11/DIP_Assignment-9.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                            <article
+                                class="lab-item"
+                                data-resource
+                                data-kind="labs"
+                                data-search="segmentation canny hough transform compression">
+                                <span class="lab-code">LAB 12</span>
+                                <h3>Segmentation &amp; compression</h3>
+                                <p>
+                                    Connect Canny edges and the Hough transform
+                                    to the foundations of image compression.
+                                </p>
+                                <div class="resource-links">
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab12/1.ipynb"
+                                        >Reference notebook</a
+                                    >
+                                    <a
+                                        href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Lab12/Assignment_10.ipynb"
+                                        >Assignment notebook</a
+                                    >
+                                    <a
+                                        href="Lab%20Practicals/Lab12/DIP_Assignment-10.pdf"
+                                        >PDF assignment</a
+                                    >
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <section
+                class="library-section"
+                id="notes"
+                aria-labelledby="notes-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">
+                            Concepts behind the operations
+                        </p>
+                        <h2 id="notes-title">Course notes</h2>
+                    </div>
+                    <p class="section-note">
+                        Select a PDF to preview it here. The viewer also offers
+                        a direct new-tab link.
+                    </p>
+                </div>
+                <ul class="notes-grid" data-resource-group>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="fundamentals digital image processing">
+                        <a class="note-link" href="Notes/1_DIP-Fundamentals.pdf"
+                            ><span>Digital image processing fundamentals</span
+                            ><span class="resource-meta">NOTE 01 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="pixel geometry">
+                        <a class="note-link" href="Notes/2_Pixel%20Geometry.pdf"
+                            ><span>Pixel geometry</span
+                            ><span class="resource-meta">NOTE 02 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="image enhancement spatial domain point processing histogram">
+                        <a
+                            class="note-link"
+                            href="Notes/3_Image%20Enhancement-Spatial%20domain.pdf"
+                            ><span>Image enhancement: spatial domain</span
+                            ><span class="resource-meta">NOTE 03 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="image enhancement frequency domain dft fft">
+                        <a
+                            class="note-link"
+                            href="Notes/4_Image%20Enhancement-Frequency%20domain.pdf"
+                            ><span>Image enhancement: frequency domain</span
+                            ><span class="resource-meta">NOTE 04 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="image restoration noise deblurring">
+                        <a
+                            class="note-link"
+                            href="Notes/5_Image%20Restoration.pdf"
+                            ><span>Image restoration</span
+                            ><span class="resource-meta">NOTE 05 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="image morphology erosion dilation">
+                        <a
+                            class="note-link"
+                            href="Notes/6_Image%20Morphology.pdf"
+                            ><span>Image morphology</span
+                            ><span class="resource-meta">NOTE 06 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="image segmentation one">
+                        <a
+                            class="note-link"
+                            href="Notes/7_Image%20Segmentation-I.pdf"
+                            ><span>Image segmentation I</span
+                            ><span class="resource-meta">NOTE 07 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="image segmentation two">
+                        <a
+                            class="note-link"
+                            href="Notes/8_Image%20Segmentation-II.pdf"
+                            ><span>Image segmentation II</span
+                            ><span class="resource-meta">NOTE 08 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="image compression">
+                        <a
+                            class="note-link"
+                            href="Notes/9_Image%20Compression.pdf"
+                            ><span>Image compression</span
+                            ><span class="resource-meta">NOTE 09 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="image representation description">
+                        <a
+                            class="note-link"
+                            href="Notes/10_Image%20Representation%20and%20Description.pdf"
+                            ><span>Image representation and description</span
+                            ><span class="resource-meta">NOTE 10 · PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="notes"
+                        data-search="multiresolution analysis wavelets">
+                        <a
+                            class="note-link"
+                            href="Notes/11_Multiresolution%20Analysis.pdf"
+                            ><span>Multiresolution analysis</span
+                            ><span class="resource-meta">NOTE 11 · PDF</span></a
+                        >
+                    </li>
+                </ul>
+            </section>
+
+            <section
+                class="library-section"
+                id="references"
+                aria-labelledby="references-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Reference material</p>
+                        <h2 id="references-title">Course files</h2>
+                    </div>
+                    <p class="section-note">
+                        Manuals, introductory material, and exam practice from
+                        the practical collection.
+                    </p>
+                </div>
+                <ul class="reference-grid" data-resource-group>
+                    <li
+                        data-resource
+                        data-kind="reference"
+                        data-search="lab manual NCSH302 practical">
+                        <a
+                            class="reference-link"
+                            href="Lab%20Practicals/DIP_NCSH302_Lab%20Manual.pdf"
+                            ><span>NCSH302 lab manual</span
+                            ><span class="resource-meta">PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="reference"
+                        data-search="basics digital image processing">
+                        <a
+                            class="reference-link"
+                            href="Lab%20Practicals/Basics%20of%20Digital%20Image%20Processing.pdf"
+                            ><span>Basics of digital image processing</span
+                            ><span class="resource-meta">PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="reference"
+                        data-search="final exam lab examination">
+                        <a
+                            class="reference-link"
+                            href="Lab%20Practicals/Final-Exam/Final-Lab-Exam.pdf"
+                            ><span>Final lab examination</span
+                            ><span class="resource-meta">PDF</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="reference"
+                        data-search="final exam question one">
+                        <a
+                            class="reference-link"
+                            href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Final-Exam/Q1.ipynb"
+                            ><span>Final exam · Question 1</span
+                            ><span class="resource-meta">NOTEBOOK</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="reference"
+                        data-search="final exam question two">
+                        <a
+                            class="reference-link"
+                            href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Final-Exam/Q2.ipynb"
+                            ><span>Final exam · Question 2</span
+                            ><span class="resource-meta">NOTEBOOK</span></a
+                        >
+                    </li>
+                    <li
+                        data-resource
+                        data-kind="reference"
+                        data-search="final exam question three">
+                        <a
+                            class="reference-link"
+                            href="https://github.com/gaurav7902/Digital-Image-Processing/blob/main/Lab%20Practicals/Final-Exam/Q3.ipynb"
+                            ><span>Final exam · Question 3</span
+                            ><span class="resource-meta">NOTEBOOK</span></a
+                        >
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>Digital Image Processing · NCSH302</p>
+            <a href="#top">Back to top</a>
+        </footer>
+
+        <dialog
+            id="pdf-viewer"
+            closedby="any"
+            aria-labelledby="pdf-viewer-title">
+            <header class="viewer-head">
+                <h2 id="pdf-viewer-title">PDF preview</h2>
+                <div class="viewer-actions">
+                    <a
+                        id="pdf-open-link"
+                        href="#"
+                        target="_blank"
+                        rel="noopener"
+                        >Open in new tab</a
+                    >
+                    <form method="dialog">
+                        <button type="submit" autofocus>Close preview</button>
+                    </form>
+                </div>
+            </header>
+            <iframe id="pdf-frame" title="PDF document preview"></iframe>
+        </dialog>
+
+        <script>
+            const searchInput = document.querySelector("#resource-search");
+            const filterSelect = document.querySelector("#resource-filter");
+            const resultCount = document.querySelector("#result-count");
+            const noResults = document.querySelector("#no-results");
+            const resources = [...document.querySelectorAll("[data-resource]")];
+            const resourceGroups = [
+                ...document.querySelectorAll("[data-resource-group]"),
+            ];
+
+            function updateResources() {
+                const query = searchInput.value.trim().toLocaleLowerCase();
+                const kind = filterSelect.value;
+                let visibleCount = 0;
+
+                for (const resource of resources) {
+                    const matchesQuery =
+                        `${resource.textContent} ${resource.dataset.search || ""}`
+                            .toLocaleLowerCase()
+                            .includes(query);
+                    const matchesKind =
+                        kind === "all" || resource.dataset.kind === kind;
+                    resource.hidden = !(matchesQuery && matchesKind);
+                    visibleCount += Number(!resource.hidden);
+                }
+
+                for (const group of resourceGroups) {
+                    group.hidden = !group.querySelector(
+                        "[data-resource]:not([hidden])",
+                    );
+                }
+
+                resultCount.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? "resource" : "resources"}`;
+                noResults.hidden = visibleCount > 0;
+            }
+
+            searchInput.addEventListener("input", updateResources);
+            filterSelect.addEventListener("change", updateResources);
+            updateResources();
+
+            const sampleImage = document.querySelector("#sample-preview");
+            const sampleTitle = document.querySelector("#sample-title");
+            const sampleStamp = document.querySelector("#sample-stamp");
+
+            for (const button of document.querySelectorAll(
+                ".sample-switch button",
+            )) {
+                button.addEventListener("click", () => {
+                    for (const control of document.querySelectorAll(
+                        ".sample-switch button",
+                    )) {
+                        control.setAttribute(
+                            "aria-pressed",
+                            String(control === button),
+                        );
+                    }
+
+                    sampleImage.src = button.dataset.image;
+                    sampleImage.alt = button.dataset.alt;
+                    sampleTitle.textContent = button.dataset.title;
+                    sampleStamp.textContent = button.dataset.stamp;
+                });
+            }
+
+            const pdfViewer = document.querySelector("#pdf-viewer");
+            const pdfFrame = document.querySelector("#pdf-frame");
+            const pdfTitle = document.querySelector("#pdf-viewer-title");
+            const pdfOpenLink = document.querySelector("#pdf-open-link");
+
+            document.addEventListener("click", (event) => {
+                if (!(event.target instanceof Element)) return;
+
+                const link = event.target.closest('a[href$=".pdf"]');
+                if (!link || typeof pdfViewer.showModal !== "function") return;
+
+                event.preventDefault();
+                const resourceTitle =
+                    link
+                        .closest(".lab-item")
+                        ?.querySelector("h3")
+                        ?.textContent.trim() ||
+                    link.querySelector("span")?.textContent.trim() ||
+                    link.textContent.trim();
+
+                pdfTitle.textContent = resourceTitle;
+                pdfFrame.title = `${resourceTitle} PDF preview`;
+                pdfFrame.src = link.href;
+                pdfOpenLink.href = link.href;
+                pdfViewer.showModal();
+            });
+
+            pdfViewer.addEventListener("close", () => {
+                pdfFrame.src = "about:blank";
+            });
+        </script>
+    </body>
+</html>
