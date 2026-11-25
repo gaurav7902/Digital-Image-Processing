@@ -1,0 +1,31 @@
+name: Publish release archive
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v4
+
+      - name: Build release archive outside the checkout
+        run: |
+          archive="$RUNNER_TEMP/Digital-Image-Processing.zip"
+          zip -r -9 "$archive" README.md index.html robots.txt Notes "Lab Practicals"
+          echo "ARCHIVE_PATH=$archive" >> "$GITHUB_ENV"
+
+      - name: Create GitHub Release and upload archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "$ARCHIVE_PATH" \
+            --verify-tag \
+            --title "Digital Image Processing $GITHUB_REF_NAME" \
+            --generate-notes
